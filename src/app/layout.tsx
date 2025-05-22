@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Carta de Amor Perruno',
+  title: 'Carta a Cami wonita',
   description: '¡Una página adorable para tu novia!',
 };
 
