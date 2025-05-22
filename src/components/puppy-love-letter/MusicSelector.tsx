@@ -13,9 +13,9 @@ interface Song {
 }
 
 const songs: Song[] = [
-  { id: 'song1', title: 'Romantic Melody', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { id: 'song2', title: 'Sweet Serenade', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-  { id: 'song3', title: 'Love Ballad', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+  { id: 'song1', title: 'Melodía Romántica', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+  { id: 'song2', title: 'Dulce Serenata', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+  { id: 'song3', title: 'Balada de Amor', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
 ];
 
 export function MusicSelector() {
@@ -91,14 +91,14 @@ export function MusicSelector() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl text-primary">
           <Music className="w-7 h-7" />
-          Set The Mood
+          Crea el Ambiente
         </CardTitle>
-        <CardDescription>Pick a tune to make this moment even more special.</CardDescription>
+        <CardDescription>Elige una melodía para hacer este momento aún más especial.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <Select onValueChange={handleSongChange} defaultValue={selectedSong?.id}>
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select a romantic song..." />
+            <SelectValue placeholder="Selecciona una canción romántica..." />
           </SelectTrigger>
           <SelectContent>
             {songs.map((song) => (
@@ -111,9 +111,9 @@ export function MusicSelector() {
         <div className="flex items-center justify-center space-x-4">
           <Button onClick={handlePlayPause} variant="outline" size="lg" className="flex-grow" disabled={!selectedSong && songs.length === 0}>
             {isPlaying ? <Pause className="mr-2 h-5 w-5" /> : <Play className="mr-2 h-5 w-5" />}
-            {isPlaying ? 'Pause' : 'Play'}
+            {isPlaying ? 'Pausar' : 'Reproducir'}
           </Button>
-          <Button onClick={handleMuteToggle} variant="outline" size="icon" aria-label={isMuted ? "Unmute" : "Mute"}>
+          <Button onClick={handleMuteToggle} variant="outline" size="icon" aria-label={isMuted ? "Quitar Silencio" : "Silenciar"}>
             {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
           </Button>
         </div>

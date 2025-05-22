@@ -9,7 +9,7 @@ import { DancingBear } from '@/components/puppy-love-letter/DancingBear';
 import { MusicSelector } from '@/components/puppy-love-letter/MusicSelector';
 import { PawPrint } from 'lucide-react';
 
-const initialHeartfeltMessage = "My Dearest Love,\n\nYou are the sunshine in my cloudy days, the laughter that brightens my world, and the calm in my every storm. Simply put, you are the best, and my heart beats only for you. Every moment with you is a precious gift I cherish more than words can say.\n\nForever and always yours,";
+const initialHeartfeltMessage = "Mi Amor Más Querido,\n\nEres el sol en mis días nublados, la risa que ilumina mi mundo y la calma en cada una de mis tormentas. En pocas palabras, eres la mejor, y mi corazón late solo por ti. Cada momento contigo es un regalo precioso que atesoro más de lo que las palabras pueden expresar.\n\nPor siempre y para siempre tuyo,";
 
 export default function PuppyLoveLetterPage() {
   const [currentMessage, setCurrentMessage] = useState(initialHeartfeltMessage);
@@ -39,7 +39,7 @@ export default function PuppyLoveLetterPage() {
 
       <footer className="py-8 mt-12 text-center text-muted-foreground">
         <p className="flex items-center justify-center gap-2">
-          Made with lots of <PawPrint className="inline-block h-5 w-5 text-accent" /> and love!
+          ¡Hecho con mucho <PawPrint className="inline-block h-5 w-5 text-accent" /> y amor!
         </p>
       </footer>
     </div>

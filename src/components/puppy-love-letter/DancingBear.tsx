@@ -17,21 +17,21 @@ export function DancingBear() {
         <CardTitle className="flex items-center gap-2 text-2xl text-primary">
           {/* No direct bear icon in lucide, using a generic fun icon */}
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 17.5A4.5 4.5 0 0 0 7.5 13h9a4.5 4.5 0 0 0-4.5 4.5Z"/><path d="M12 3v10"/><path d="M12 13a4.5 4.5 0 0 0-4.5-4.5v0A4.5 4.5 0 0 0 3 13q0 4.5 4.5 4.5Z"/><path d="M12 13a4.5 4.5 0 0 1 4.5-4.5v0A4.5 4.5 0 0 1 21 13q0 4.5-4.5 4.5Z"/><path d="M7.5 13X7.5 8.5"/><path d="M16.5 13X16.5 8.5"/></svg>
-          Groovy Bear on the Loose!
+          ¡Osito Bailarín Suelto!
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center p-6 min-h-[300px]">
         <div className="dancing-bear-animation">
           <Image
             src="https://placehold.co/200x250.png"
-            alt="A cute dancing bear"
+            alt="Un lindo oso bailarín"
             width={200}
             height={250}
-            data-ai-hint="dancing bear illustration"
+            data-ai-hint="ilustración oso bailarín"
             className="drop-shadow-xl"
           />
         </div>
-        <p className="mt-6 text-center text-muted-foreground">This bear dances just for you!</p>
+        <p className="mt-6 text-center text-muted-foreground">¡Este osito baila solo para ti!</p>
       </CardContent>
     </Card>
   );

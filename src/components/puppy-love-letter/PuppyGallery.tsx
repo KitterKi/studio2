@@ -5,12 +5,12 @@ import { Dog } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
 const puppyImageUrls = [
-  { src: "https://placehold.co/300x300.png", alt: "Cute puppy 1", hint: "golden retriever puppy" },
-  { src: "https://placehold.co/300x302.png", alt: "Cute puppy 2", hint: "corgi puppy" },
-  { src: "https://placehold.co/302x300.png", alt: "Cute puppy 3", hint: "labrador puppy" },
-  { src: "https://placehold.co/301x301.png", alt: "Cute puppy 4", hint: "poodle puppy" },
-  { src: "https://placehold.co/300x299.png", alt: "Cute puppy 5", hint: "beagle puppy" },
-  { src: "https://placehold.co/299x300.png", alt: "Cute puppy 6", hint: "dachshund puppy" },
+  { src: "https://placehold.co/300x300.png", alt: "Perrito lindo 1", hint: "cachorro golden retriever" },
+  { src: "https://placehold.co/300x302.png", alt: "Perrito lindo 2", hint: "cachorro corgi" },
+  { src: "https://placehold.co/302x300.png", alt: "Perrito lindo 3", hint: "cachorro labrador" },
+  { src: "https://placehold.co/301x301.png", alt: "Perrito lindo 4", hint: "cachorro caniche" },
+  { src: "https://placehold.co/300x299.png", alt: "Perrito lindo 5", hint: "cachorro beagle" },
+  { src: "https://placehold.co/299x300.png", alt: "Perrito lindo 6", hint: "cachorro teckel" },
 ];
 
 export function PuppyGallery() {
@@ -49,7 +49,7 @@ export function PuppyGallery() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl text-primary">
           <Dog className="w-7 h-7" />
-          Puppy Overload!
+          ¡Sobredosis de Perritos!
         </CardTitle>
       </CardHeader>
       <CardContent>

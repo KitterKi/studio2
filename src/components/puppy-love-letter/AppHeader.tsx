@@ -6,11 +6,11 @@ export function AppHeader() {
       <div className="inline-flex items-center gap-3">
         <Heart className="w-10 h-10 text-accent" fill="currentColor" />
         <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight">
-          Puppy Love Letter
+          Carta de Amor Perruno
         </h1>
         <Heart className="w-10 h-10 text-accent" fill="currentColor" />
       </div>
-      <p className="mt-2 text-lg text-muted-foreground">For the best girlfriend in the world!</p>
+      <p className="mt-2 text-lg text-muted-foreground">¡Para la mejor novia del mundo!</p>
     </header>
   );
 }

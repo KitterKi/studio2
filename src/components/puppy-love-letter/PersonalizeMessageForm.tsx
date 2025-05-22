@@ -15,9 +15,9 @@ import React from 'react';
 
 const formSchema = z.object({
   relationshipDetails: z.string().min(10, {
-    message: "Please share a bit more! (min. 10 characters)",
+    message: "¡Por favor, comparte un poco más! (mín. 10 caracteres)",
   }).max(500, {
-    message: "That's a lot of love! (max. 500 characters)",
+    message: "¡Eso es mucho amor! (máx. 500 caracteres)",
   }),
 });
 
@@ -46,14 +46,14 @@ export const PersonalizeMessageForm: FC<PersonalizeMessageFormProps> = ({ onMess
       const result = await personalizeMessage(input);
       onMessagePersonalized(result.personalizedMessage);
       toast({
-        title: "Message Personalized! ✨",
-        description: "Your unique touch has been added.",
+        title: "¡Mensaje Personalizado! ✨",
+        description: "Se ha añadido tu toque único.",
       });
     } catch (error) {
       console.error("Error personalizing message:", error);
       toast({
-        title: "Uh oh! Something went wrong.",
-        description: "Could not personalize the message. Please try again.",
+        title: "¡Oh, no! Algo salió mal.",
+        description: "No se pudo personalizar el mensaje. Por favor, inténtalo de nuevo.",
         variant: "destructive",
       });
       // Keep the initial message if AI fails
@@ -68,10 +68,10 @@ export const PersonalizeMessageForm: FC<PersonalizeMessageFormProps> = ({ onMess
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl text-primary">
             <Wand2 className="w-7 h-7" />
-            Make it Yours!
+            ¡Hazlo Tuyo!
         </CardTitle>
         <CardDescription>
-          Add a few details about your relationship, and let AI sprinkle some extra magic on your message.
+          Añade algunos detalles sobre tu relación y deja que la IA añada un toque extra de magia a tu mensaje.
         </CardDescription>
       </CardHeader>
       <Form {...form}>
@@ -82,10 +82,10 @@ export const PersonalizeMessageForm: FC<PersonalizeMessageFormProps> = ({ onMess
               name="relationshipDetails"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Your Special Relationship Details</FormLabel>
+                  <FormLabel>Los Detalles Especiales de Tu Relación</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="e.g., Remember that time we... / She always makes me laugh when..."
+                      placeholder="Ej: ¿Recuerdas aquella vez que... / Ella siempre me hace reír cuando..."
                       className="resize-none"
                       rows={4}
                       {...field}
@@ -101,12 +101,12 @@ export const PersonalizeMessageForm: FC<PersonalizeMessageFormProps> = ({ onMess
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Personalizing...
+                  Personalizando...
                 </>
               ) : (
                 <>
                   <Wand2 className="mr-2 h-4 w-4" />
-                  Personalize Message
+                  Personalizar Mensaje
                 </>
               )}
             </Button>

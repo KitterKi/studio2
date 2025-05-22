@@ -12,7 +12,7 @@ export const MessageDisplay: FC<MessageDisplayProps> = ({ message }) => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl text-primary">
           <MessageSquareHeart className="w-7 h-7" />
-          A Special Message For You
+          Un Mensaje Especial Para Ti
         </CardTitle>
       </CardHeader>
       <CardContent>
