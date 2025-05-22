@@ -1,7 +1,7 @@
 
 "use client";
 
-import Image from 'next/image';
+// import Image from 'next/image'; // Using standard img for troubleshooting
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Gift } from 'lucide-react';
 // import React, { useEffect, useRef, useState } from 'react'; // Comentado para simplificar
@@ -37,7 +37,7 @@ export function DancingBear() {
   // }, []);
 
   return (
-    <Card className="shadow-lg overflow-hidden">
+    <Card className="shadow-lg"> {/* Removed overflow-hidden temporarily to see if it was clipping */}
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl text-primary">
           <Gift className="w-7 h-7" />
@@ -48,15 +48,17 @@ export function DancingBear() {
         <div
           // ref={imageContainerRef} // Comentado para simplificar
           className="group rounded-lg overflow-hidden shadow-md" // Clases de animación eliminadas
-          style={{ width: '200px', height: '200px' }}
+          style={{ width: '200px', height: '200px', border: '1px solid red' }} // Added border for visibility
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="https://placehold.co/200x200.png" // URL de Placeholder
             alt="Patito de hule divertido (placeholder)"
-            width={200}
-            height={200}
+            width="200" // HTML attribute
+            height="200" // HTML attribute
             className="object-cover w-full h-full"
             data-ai-hint="patito hule placeholder"
+            style={{ display: 'block' }} // Ensure it's not display:none
           />
         </div>
         <p className="mt-6 text-center text-muted-foreground">¡Este patito flota solo para ti!</p>
