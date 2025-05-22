@@ -4,37 +4,37 @@
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Gift } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+// import React, { useEffect, useRef, useState } from 'react'; // Comentado para simplificar
 
 export function DancingBear() {
-  const [isVisible, setIsVisible] = useState(false);
-  const imageContainerRef = useRef<HTMLDivElement | null>(null);
+  // const [isVisible, setIsVisible] = useState(false); // Comentado para simplificar
+  // const imageContainerRef = useRef<HTMLDivElement | null>(null); // Comentado para simplificar
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            if (imageContainerRef.current) {
-              observer.unobserve(imageContainerRef.current);
-            }
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  // useEffect(() => { // Comentado para simplificar
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           setIsVisible(true);
+  //           if (imageContainerRef.current) {
+  //             observer.unobserve(imageContainerRef.current);
+  //           }
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.1 }
+  //   );
 
-    if (imageContainerRef.current) {
-      observer.observe(imageContainerRef.current);
-    }
+  //   if (imageContainerRef.current) {
+  //     observer.observe(imageContainerRef.current);
+  //   }
 
-    return () => {
-      if (imageContainerRef.current) {
-        observer.unobserve(imageContainerRef.current);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (imageContainerRef.current) {
+  //       observer.unobserve(imageContainerRef.current);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <Card className="shadow-lg overflow-hidden">
@@ -44,19 +44,19 @@ export function DancingBear() {
           ¡Un Amigo Flotante!
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col items-center justify-center p-6 min-h-[320px]"> {/* Ajustado min-h */}
+      <CardContent className="flex flex-col items-center justify-center p-6 min-h-[320px]">
         <div
-          ref={imageContainerRef}
-          className={`group rounded-lg overflow-hidden shadow-md transition-all duration-300 ease-out hover:shadow-xl hover:scale-105 puppy-image-enter ${isVisible ? 'puppy-image-enter-active' : ''}`}
-          style={{ width: '200px', height: '200px' }} // Definimos un tamaño para el contenedor
+          // ref={imageContainerRef} // Comentado para simplificar
+          className="group rounded-lg overflow-hidden shadow-md" // Clases de animación eliminadas
+          style={{ width: '200px', height: '200px' }}
         >
           <Image
-            src="https://images.unsplash.com/photo-1580618864190-995ad00a2b94?w=300&auto=format&fit=crop&q=80" // Otra URL de patito de hule
-            alt="Patito de hule divertido"
+            src="https://placehold.co/200x200.png" // URL de Placeholder
+            alt="Patito de hule divertido (placeholder)"
             width={200}
             height={200}
-            className="object-cover w-full h-full" // object-cover se encargará de llenar el contenedor
-            data-ai-hint="patito hule"
+            className="object-cover w-full h-full"
+            data-ai-hint="patito hule placeholder"
           />
         </div>
         <p className="mt-6 text-center text-muted-foreground">¡Este patito flota solo para ti!</p>
