@@ -24,10 +24,10 @@ export function DancingBear() {
         <div className="dancing-bear-animation">
           <Image
             src="https://placehold.co/200x250.png"
-            alt="Un lindo oso bailarín"
+            alt="Un lindo oso bailarín ilustrado"
             width={200}
             height={250}
-            data-ai-hint="ilustración oso bailarín"
+            data-ai-hint="oso bailarín ilustración"
             className="drop-shadow-xl"
           />
         </div>
