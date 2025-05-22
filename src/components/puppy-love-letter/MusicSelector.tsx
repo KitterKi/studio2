@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -9,7 +10,7 @@ import { Music, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 interface Song {
   id: string;
   title: string;
-  url: string; // Placeholder URL
+  url: string;
 }
 
 const songs: Song[] = [
@@ -25,15 +26,6 @@ export function MusicSelector() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (selectedSong && audioRef.current) {
-      audioRef.current.src = selectedSong.url;
-      if (isPlaying) {
-        audioRef.current.play().catch(error => console.error("Error playing audio:", error));
-      }
-    }
-  }, [selectedSong, isPlaying]);
-
-  useEffect(() => {
     // Create audio element on client side
     if (typeof window !== "undefined") {
         audioRef.current = new Audio();
@@ -47,34 +39,65 @@ export function MusicSelector() {
     };
   }, []);
 
-  const handlePlayPause = () => {
-    if (!selectedSong && songs.length > 0) {
-      // Auto-select first song if none is selected
-      setSelectedSong(songs[0]); 
-    }
-    
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        // Attempt to play. This might require user interaction first on some browsers.
-        audioRef.current.play().catch(error => console.error("Error playing audio:", error));
+  useEffect(() => {
+    const audioElement = audioRef.current;
+    if (!audioElement) return;
+
+    if (selectedSong) {
+      // If the song source is different, update it
+      if (audioElement.src !== selectedSong.url) {
+        audioElement.src = selectedSong.url;
+        // When src changes, the element implicitly pauses.
+        // If isPlaying is true, the logic below will handle playing it.
       }
-      setIsPlaying(!isPlaying);
+
+      if (isPlaying) {
+        const playPromise = audioElement.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.error("Error playing audio:", error);
+            // If play was rejected (e.g., user interaction needed, or media error)
+            // update the state to reflect that it's not playing.
+            setIsPlaying(false);
+          });
+        }
+      } else {
+        audioElement.pause();
+      }
+    } else {
+      // No song selected, ensure it's paused
+      audioElement.pause();
+      if (audioElement.src) { // Clear src if a song was previously loaded
+        audioElement.src = "";
+      }
     }
+  }, [selectedSong, isPlaying]); // Effect runs when selectedSong or isPlaying changes
+
+
+  const handlePlayPause = () => {
+    if (!audioRef.current) return;
+
+    if (!selectedSong && songs.length > 0) {
+      // If no song is selected, select the first one and set to play.
+      setSelectedSong(songs[0]);
+      setIsPlaying(true); 
+    } else if (selectedSong) {
+      // If a song is selected, just toggle play state.
+      setIsPlaying(prevIsPlaying => !prevIsPlaying);
+    }
+    // If no songs are available, the button is disabled, so no action needed.
   };
 
   const handleSongChange = (songId: string) => {
-    const song = songs.find(s => s.id === songId);
-    if (song) {
-      setSelectedSong(song);
-      // If already playing, continue playing new song. If paused, stay paused.
-      if (audioRef.current) {
-        audioRef.current.src = song.url;
-        if (isPlaying) {
-            audioRef.current.play().catch(error => console.error("Error playing audio:", error));
-        }
+    const songToSelect = songs.find(s => s.id === songId);
+    if (songToSelect) {
+      if (selectedSong?.id !== songToSelect.id) {
+        setSelectedSong(songToSelect);
+        // If music was playing, it will continue with the new song due to useEffect.
+        // If paused, it will load the new song and remain paused due to useEffect.
       }
+      // If the same song is selected, and it's not playing,
+      // clicking play/pause is the way to start it.
     }
   };
 
@@ -84,7 +107,6 @@ export function MusicSelector() {
       setIsMuted(!isMuted);
     }
   };
-
 
   return (
     <Card className="shadow-lg">
@@ -96,7 +118,7 @@ export function MusicSelector() {
         <CardDescription>Elige una melodía para hacer este momento aún más especial.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Select onValueChange={handleSongChange} defaultValue={selectedSong?.id}>
+        <Select onValueChange={handleSongChange} value={selectedSong?.id || ""}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Selecciona una canción romántica..." />
           </SelectTrigger>
@@ -109,7 +131,13 @@ export function MusicSelector() {
           </SelectContent>
         </Select>
         <div className="flex items-center justify-center space-x-4">
-          <Button onClick={handlePlayPause} variant="outline" size="lg" className="flex-grow" disabled={!selectedSong && songs.length === 0}>
+          <Button 
+            onClick={handlePlayPause} 
+            variant="outline" 
+            size="lg" 
+            className="flex-grow" 
+            disabled={songs.length === 0} // Disable if no songs, or no song selected for play
+          >
             {isPlaying ? <Pause className="mr-2 h-5 w-5" /> : <Play className="mr-2 h-5 w-5" />}
             {isPlaying ? 'Pausar' : 'Reproducir'}
           </Button>
