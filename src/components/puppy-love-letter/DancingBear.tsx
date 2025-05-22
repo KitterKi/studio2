@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -16,11 +17,11 @@ export function DancingBear() {
       <CardContent className="flex flex-col items-center justify-center p-6 min-h-[300px]">
         <div className="dancing-bear-animation">
           <Image
-            src="https://images.unsplash.com/photo-1530595467537-015e1088e034?q=80&w=600&auto=format&fit=crop"
-            alt="Un oso pardo en la naturaleza"
+            src="https://images.unsplash.com/photo-1546182990-d69492a6d68F?w=600&auto=format&fit=crop&q=80"
+            alt="Oso divertido bailando"
             width={200}
             height={250}
-            data-ai-hint="oso pardo"
+            data-ai-hint="oso caricatura"
             className="drop-shadow-xl rounded-md object-cover"
           />
         </div>
