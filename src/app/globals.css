@@ -2,37 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --background: 240 100% 99%; /* Light, desaturated lavender (#F5F5FF) */
+    --foreground: 240 10% 20%; /* Dark grayish blue for text */
+    --card: 240 67% 97%; /* Soft lavender (#E6E6FA) */
+    --card-foreground: 240 10% 20%;
+    --popover: 240 67% 97%;
+    --popover-foreground: 240 10% 20%;
+    --primary: 240 67% 90%; /* Adjusted Soft lavender (#E6E6FA) to be a bit more vibrant for primary elements */
+    --primary-foreground: 240 10% 10%; /* Darker for contrast on primary */
+    --secondary: 348 100% 94%; /* Lighter Pale Rose for secondary elements */
+    --secondary-foreground: 348 50% 30%;
+    --muted: 240 60% 95%;
+    --muted-foreground: 240 10% 45%;
+    --accent: 348 100% 91%; /* Pale rose (#FFD1DC) */
+    --accent-foreground: 348 50% 25%; /* Darker rose for text on accent */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 240 60% 90%;
+    --input: 240 60% 90%;
+    --ring: 348 100% 85%; /* Ring color based on accent */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Sidebar variables, kept as is or can be themed similarly if sidebar is used */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -42,31 +40,34 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
+    --background: 240 10% 10%; /* Dark lavender/blue */
+    --foreground: 240 60% 92%; /* Light lavender for text */
+    --card: 240 10% 15%;
+    --card-foreground: 240 60% 92%;
+    --popover: 240 10% 15%;
+    --popover-foreground: 240 60% 92%;
+    --primary: 240 50% 65%; /* A visible lavender */
+    --primary-foreground: 0 0% 98%; 
+    --secondary: 348 70% 60%; /* A visible rose */
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
+    --muted: 240 10% 25%;
+    --muted-foreground: 240 30% 70%;
+    --accent: 348 70% 60%; 
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 240 10% 25%;
+    --input: 240 10% 25%;
+    --ring: 348 70% 55%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* Dark Sidebar variables */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -84,5 +85,29 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans);
   }
+}
+
+@keyframes dance {
+  0%, 100% { transform: rotate(-8deg) translateY(0px) scale(1); }
+  25% { transform: rotate(0deg) translateY(-10px) scale(1.05); }
+  50% { transform: rotate(8deg) translateY(0px) scale(1); }
+  75% { transform: rotate(0deg) translateY(-10px) scale(1.05); }
+}
+
+.dancing-bear-animation {
+  animation: dance 2.5s infinite ease-in-out;
+  transform-origin: bottom center;
+}
+
+.puppy-image-enter {
+  opacity: 0;
+  transform: scale(0.9) translateY(10px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.puppy-image-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
