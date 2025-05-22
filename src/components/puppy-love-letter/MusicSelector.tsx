@@ -14,9 +14,9 @@ interface Song {
 }
 
 const songs: Song[] = [
-  { id: 'song1', title: 'Melodía Romántica', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { id: 'song2', title: 'Dulce Serenata', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-  { id: 'song3', title: 'Balada de Amor', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+  { id: 'song1', title: 'Susurro de Estrellas', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+  { id: 'song2', title: 'Abrazo de Luna', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+  { id: 'song3', title: 'Sueño de Algodón', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
 ];
 
 export function MusicSelector() {
@@ -110,12 +110,12 @@ export function MusicSelector() {
           <Music className="w-7 h-7" />
           Crea el Ambiente
         </CardTitle>
-        <CardDescription>Elige una melodía para hacer este momento aún más especial.</CardDescription>
+        <CardDescription>Elige una melodía tierna para hacer este momento aún más especial.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <Select onValueChange={handleSongChange} value={selectedSong?.id || ""}>
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Selecciona una canción romántica..." />
+            <SelectValue placeholder="Selecciona una melodía suave..." />
           </SelectTrigger>
           <SelectContent>
             {songs.map((song) => (
