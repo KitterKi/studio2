@@ -20,8 +20,9 @@ const songs: Song[] = [
 ];
 
 export function MusicSelector() {
-  const [selectedSong, setSelectedSong] = useState<Song | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const thirdSong = songs.length > 2 ? songs[2] : null;
+  const [selectedSong, setSelectedSong] = useState<Song | null>(thirdSong);
+  const [isPlaying, setIsPlaying] = useState(!!thirdSong); // Attempt to play if thirdSong exists
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -44,18 +45,17 @@ export function MusicSelector() {
     if (!audioElement) return;
 
     if (selectedSong) {
-      // If the song source is different, update it
       if (audioElement.src !== selectedSong.url) {
         audioElement.src = selectedSong.url;
-        // When src changes, the element implicitly pauses.
-        // If isPlaying is true, the logic below will handle playing it.
+        // When src changes, element pauses implicitly. 
+        // If isPlaying is true, logic below handles playing.
       }
 
       if (isPlaying) {
         const playPromise = audioElement.play();
         if (playPromise !== undefined) {
           playPromise.catch(error => {
-            console.error("Error playing audio:", error);
+            console.error("Error playing audio (autoplay might be blocked):", error);
             // If play was rejected (e.g., user interaction needed, or media error)
             // update the state to reflect that it's not playing.
             setIsPlaying(false);
@@ -65,27 +65,23 @@ export function MusicSelector() {
         audioElement.pause();
       }
     } else {
-      // No song selected, ensure it's paused
       audioElement.pause();
-      if (audioElement.src) { // Clear src if a song was previously loaded
+      if (audioElement.src) { 
         audioElement.src = "";
       }
     }
-  }, [selectedSong, isPlaying]); // Effect runs when selectedSong or isPlaying changes
+  }, [selectedSong, isPlaying]);
 
 
   const handlePlayPause = () => {
     if (!audioRef.current) return;
 
     if (!selectedSong && songs.length > 0) {
-      // If no song is selected, select the first one and set to play.
       setSelectedSong(songs[0]);
       setIsPlaying(true); 
     } else if (selectedSong) {
-      // If a song is selected, just toggle play state.
       setIsPlaying(prevIsPlaying => !prevIsPlaying);
     }
-    // If no songs are available, the button is disabled, so no action needed.
   };
 
   const handleSongChange = (songId: string) => {
@@ -93,11 +89,10 @@ export function MusicSelector() {
     if (songToSelect) {
       if (selectedSong?.id !== songToSelect.id) {
         setSelectedSong(songToSelect);
-        // If music was playing, it will continue with the new song due to useEffect.
-        // If paused, it will load the new song and remain paused due to useEffect.
+        // If music was playing, it will continue with the new song (or attempt to).
+        // If paused, it will load the new song and remain paused.
+        // isPlaying state remains the same initially, useEffect handles actual play/pause.
       }
-      // If the same song is selected, and it's not playing,
-      // clicking play/pause is the way to start it.
     }
   };
 
@@ -136,7 +131,7 @@ export function MusicSelector() {
             variant="outline" 
             size="lg" 
             className="flex-grow" 
-            disabled={songs.length === 0} // Disable if no songs, or no song selected for play
+            disabled={songs.length === 0 || !selectedSong} // Disable if no songs or no song selected
           >
             {isPlaying ? <Pause className="mr-2 h-5 w-5" /> : <Play className="mr-2 h-5 w-5" />}
             {isPlaying ? 'Pausar' : 'Reproducir'}
@@ -145,7 +140,11 @@ export function MusicSelector() {
             {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
           </Button>
         </div>
+        {isPlaying && selectedSong && (
+             <p className="text-sm text-center text-muted-foreground">Reproduciendo: {selectedSong.title}</p>
+        )}
       </CardContent>
     </Card>
   );
 }
+
